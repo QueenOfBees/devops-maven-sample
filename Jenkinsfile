@@ -14,8 +14,8 @@ pipeline {
         GITHUB_CREDENTIAL_ID = 'github-id'
         KUBECONFIG_CREDENTIAL_ID = 'demo-kubeconfig'
         REGISTRY = 'docker.io'
-        DOCKERHUB_NAMESPACE = 'docker_username'
-        GITHUB_ACCOUNT = 'kubesphere'
+        DOCKERHUB_NAMESPACE = 'harp2022'
+        GITHUB_ACCOUNT = 'QueenOfBees'
         APP_NAME = 'devops-maven-sample'
     }
 
@@ -33,7 +33,7 @@ pipeline {
                 }
             }
         }
- 
+
         stage ('build & push') {
             steps {
                 container ('maven') {
