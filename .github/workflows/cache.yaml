@@ -1,0 +1,40 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
+
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Testing cache plugin
+
+on:
+  push:
+    branches: [ 'master' ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: mkdir -p ~/data
+      - name: Cache key is ${{ runner.os }}-data-${{ hashFiles('**/key.txt') }}
+        uses: actions/cache@v4
+        id: cache
+        with:
+          path: ~/data
+          key: ${{ runner.os }}-data-${{ hashFiles('**/key.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-data
+      - run: echo "cache key is > ${{ runner.os }}-data-${{ hashFiles('**/key.txt') }}"
+      - name: check not hit
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: echo "cache not hit"
+      - name: check hit
+        if: steps.cache.outputs.cache-hit == 'true'
+        run: echo "cache hit, data:" && cat ~/data/1.txt
+      - name: update cache
+        run: echo $(date) && echo $(date) > ~/data/1.txt
