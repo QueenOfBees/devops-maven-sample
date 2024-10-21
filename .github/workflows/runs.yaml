@@ -1,0 +1,15 @@
+
+name: demo
+
+inputs:
+  message:
+    required: true
+
+
+runs:
+  using: "composite"
+  steps:
+    - run: echo 1
+    - shell: echo 2
+    - run: echo 3
+    - run: echo ${{ inputs.message }}
