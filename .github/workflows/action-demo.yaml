@@ -18,6 +18,6 @@ jobs:
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - name: testing compose runs in github
-        uses: ./.github/workflows/runs.yaml
+        uses: ./.github/workflows/runs
         with:
           message: "this is from action-demo workflow"
