@@ -20,16 +20,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v4
+      - run: ls -al
       - run: mkdir -p ~/data
-      - name: Cache key is ${{ runner.os }}-data-${{ hashFiles('**/key.txt', 'key.txt') }}
+      - name: Cache key is ${{ runner.os }}-data-${{ hashFiles('**/key.txt') }}
         uses: actions/cache@v4
         id: cache
         with:
           path: ~/data
-          key: ${{ runner.os }}-data-${{ hashFiles('**/key.txt', 'key.txt') }}
+          key: ${{ runner.os }}-data-${{ hashFiles('**/key.txt') }}
           restore-keys: |
             ${{ runner.os }}-data-
-      - run: echo "cache key is > ${{ runner.os }}-data-${{ hashFiles('**/key.txt', 'key.txt') }}"
+      - run: echo "cache key is > ${{ runner.os }}-data-${{ hashFiles('**/key.txt') }}"
       - name: check not hit
         if: steps.cache.outputs.cache-hit != 'true'
         run: echo "cache not hit"
