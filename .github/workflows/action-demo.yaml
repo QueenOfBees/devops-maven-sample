@@ -3,7 +3,7 @@ run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push, pull_request, pull_request_review_comment]
 jobs:
   Explore-GitHub-Actions:
-    if: false
+    if: true
     runs-on: ubuntu-latest
     steps:
       - run: echo this is feature
