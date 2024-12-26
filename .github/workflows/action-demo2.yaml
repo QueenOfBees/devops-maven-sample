@@ -1,13 +1,10 @@
-name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: [push, pull_request, pull_request_review_comment]
+name: GitHub Actions Demo2
+run-name: ${{ github.actor }} is testing out GitHub Actions2 🚀
+on: [push, pull_request, pull_request_review]
 jobs:
-  Explore-GitHub-Actions:
-    if: true
+  Explore-GitHub-Actions2:
     runs-on: ubuntu-latest
     steps:
-      - run: echo this is feature
-      - run: echo this is feature2
       - uses: actions/checkout@v4
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
